@@ -1,0 +1,16 @@
+*.gem
+.rvmrc
+.ruby-version
+.ruby-gemset
+.bundle
+Gemfile.lock
+pkg/*
+coverage.data
+coverage/*
+.yardoc
+doc/*
+tmp
+vendor/bundle
+*.swp
+*.swo
+*.DS_Store
