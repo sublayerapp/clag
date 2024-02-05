@@ -28,3 +28,9 @@ Currently support one command: "g".
 
 Bug reports and pull requests are welcome on Github at
 https://github.com/sublayerapp/clag
+
+## Community
+
+Like what you see, or looking for more people working on the future of
+programming with LLMs? Come join us in the [Promptable Architecture
+Discord](https://discord.gg/sjTJszPwXt)
