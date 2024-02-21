@@ -8,15 +8,27 @@ command with the help of an LLM!
 
 ## Installation
 
-* Get an API key from OpenAI for gpt4-turbo: https://platform.openai.com/
-
-* Set your API key as OPENAI\_API\_KEY in your environment
-
 * Install the gem
 `gem install clag`
 
 * Generate commands
 `clag g "create a new ruby on rails project using postgres and tailwindcss"`
+
+### Using OpenAI's GPT-4
+
+* Get an API key from OpenAI for gpt4-turbo: https://platform.openai.com/
+
+* Set your API key as OPENAI\_API\_KEY in your environment
+
+
+### Using Google's Gemini 1.0
+
+* Get an API key from Google's AI Studio at https://ai.google.dev/
+
+* Set your API key as GEMINI\_API\_KEY in your environment
+
+* Select Gemini as your preferred LLM by setting CLAG\_LLM=gemini in your
+  environment
 
 ## Usage
 

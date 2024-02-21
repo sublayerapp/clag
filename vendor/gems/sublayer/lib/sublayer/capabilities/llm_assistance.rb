@@ -1,4 +1,5 @@
 require "openai"
+require "httparty"
 
 module Sublayer
   module Capabilities
@@ -15,6 +16,53 @@ module Sublayer
       end
 
       def llm_generate
+        if ENV["CLAG_LLM"] == "gemini"
+          generate_with_gemini
+        else
+          generate_with_openai
+        end
+      end
+
+      private
+      def generate_with_gemini
+        gemini_prompt = adapt_prompt_for_gemini
+
+        response = HTTParty.post("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=#{ENV['GEMINI_API_KEY']}", body: gemini_prompt.to_json, headers: { 'Content-Type' => 'application/json' })
+
+        function_output = extract_function_output_from_gemini_response(response)
+
+        return function_output
+      end
+
+      def adapt_prompt_for_gemini
+        return({ tools: { function_declarations: [ self.class::OUTPUT_FUNCTION.to_hash ] }, contents:  { role: "user", parts: { text: prompt } }  })
+      end
+
+      def extract_function_output_from_gemini_response(response)
+        candidates = response.dig('candidates')
+        if candidates && candidates.size > 0
+          content = candidates[0].dig('content')
+          if content && content['parts'] && content['parts'].size > 0
+            part = content['parts'][0]
+
+            # Check if the part contains a function call
+            if part.key?('functionCall')
+              function_name = part['functionCall']['name']
+              args = part['functionCall']['args']
+
+              # Assuming the agent expects a single string parameter:
+              if args && args.key?(self.class::OUTPUT_FUNCTION.name)
+                return args[self.class::OUTPUT_FUNCTION.name]
+              end
+            else
+              # If it's not a function call, check for a direct string response
+              return part['text'] if part.key?('text')
+            end
+          end
+        end
+      end
+
+      def generate_with_openai
         client = OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"])
 
         response = client.chat(

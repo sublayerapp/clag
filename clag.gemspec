@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'cli-kit', '~> 5'
   spec.add_dependency 'cli-ui', '~> 2.2.3'
   spec.add_dependency 'ruby-openai', '~> 6'
+  spec.add_dependency 'httparty', '~> 0.21'
   spec.add_dependency 'clipboard', '~> 1.3'
   spec.add_dependency 'activesupport'
 
