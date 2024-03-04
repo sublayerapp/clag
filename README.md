@@ -30,6 +30,15 @@ command with the help of an LLM!
 * Select Gemini as your preferred LLM by setting CLAG\_LLM=gemini in your
   environment
 
+### Using Anthropic's Claude 3 Opus
+
+* Get an API key from Anthropic at https://www.anthropic.com/
+
+* Set your API key as ANTHROPIC\_API\_KEY in your environment
+
+* Select Claude 3 Opus as your preferred LLM by setting CLAG\_LLM=claude in
+  your environment
+
 ## Usage
 
 Currently support one command: "g".

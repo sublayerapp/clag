@@ -14,9 +14,8 @@ module Sublayer
         raise NotImplementedError
       end
 
-      private
-
-      def list_of_objects_hash
+      def to_xml
+        raise NotImplementedError
       end
     end
   end
