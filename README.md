@@ -47,6 +47,15 @@ command with the help of an LLM!
 
 * Select Groq as your preferred LLM by setting CLAG\_LLM=groq in your environment
 
+### Using a Local Model
+
+* Have a model locally from either Ollama or Llamafile with an OpenAI compatible
+  API
+
+* Have the API server running on port 8080
+
+* Select local as your preferred LLM by setting CLAG\_LLM=local in your environment
+
 ## Usage
 
 Currently support one command: "g".
