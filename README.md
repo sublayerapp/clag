@@ -39,6 +39,14 @@ command with the help of an LLM!
 * Select Claude 3 Opus as your preferred LLM by setting CLAG\_LLM=claude in
   your environment
 
+### Using Groq on Mixtral
+
+* Get an API key from https://console.groq.com/
+
+* Set your API key as GROQ\_API\_KEY in your environment
+
+* Select Groq as your preferred LLM by setting CLAG\_LLM=groq in your environment
+
 ## Usage
 
 Currently support one command: "g".
