@@ -8,10 +8,8 @@ unshift_path = ->(path) {
   $LOAD_PATH.unshift(p) unless $LOAD_PATH.include?(p)
 }
 unshift_path.call('lib')
+
 require 'bundler/setup'
-
-unshift_path.call('vendor/gems/sublayer/lib')
-
 require 'clag'
 
 exit(Clag::ErrorHandler.call do

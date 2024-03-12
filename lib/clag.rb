@@ -11,7 +11,7 @@ module Clag
 
   autoload(:EntryPoint, 'clag/entry_point')
   autoload(:Commands,   'clag/commands')
-
+  autoload(:Generators, 'clag/generators/')
 
   Config = CLI::Kit::Config.new(tool_name: TOOL_NAME)
   Command = CLI::Kit::BaseCommand
