@@ -17,7 +17,7 @@ module Clag
           return
         end
 
-        results = CommandLineCommandGenerator.new(description: input).generate
+        results = Clag::CommandLineCommandGenerator.new(description: input).generate
 
         if results == 'unknown'
           puts CLI::UI.fmt("{{yellow:Unable to generate command. Please try again or provide more information.}}")

@@ -11,7 +11,7 @@ module Clag
 
   autoload(:EntryPoint, 'clag/entry_point')
   autoload(:Commands,   'clag/commands')
-  autoload(:Generators, 'clag/generators/')
+  load 'clag/generators/command_line_command_generator.rb'
 
   Config = CLI::Kit::Config.new(tool_name: TOOL_NAME)
   Command = CLI::Kit::BaseCommand
@@ -23,4 +23,22 @@ module Clag
   )
 
   ErrorHandler = CLI::Kit::ErrorHandler.new(log_file: LOG_FILE)
+
+  case ENV["CLAG_LLM"]
+  when "gemini"
+    Sublayer.configuration.ai_provider = Sublayer::Providers::Gemini
+    Sublayer.configuration.ai_model = "gemini-pro"
+  when "claude"
+    Sublayer.configuration.ai_provider = Sublayer::Providers::Claude
+    Sublayer.configuration.ai_model ="claude-3-opus-20240229"
+  when "groq"
+    Sublayer.configuration.ai_provider = Sublayer::Providers::Groq
+    Sublayer.configuration.ai_model = "mixtral-8x7b-32768"
+  when "local"
+    Sublayer.configuration.ai_provider = Sublayer::Providers::Local
+    Sublayer.configuration.ai_model = "LLaMA_CPP"
+  else
+    Sublayer.configuration.ai_provider = Sublayer::Providers::OpenAI
+    Sublayer.configuration.ai_model = "gpt-4-turbo-preview"
+  end
 end
